@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <title>Wedding Countdown</title>
+  <style>
+    /* === General Page Styling === */
+    body {
+      margin: 0;
+      padding: 0;
+      background: #cccccc;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    /* === Image Container Styling === */
+    .image-container {
+      position: relative;
+      width: 900px;
+      height: 600px;
+      overflow: hidden;
+      border-radius: 100px;
+    }
+
+    .countdown-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: translate(0px, -250px); /* Adjust position here */
+      display: block;
+      width: 900px; /* Set width */
+      height: auto; /* Set height to auto */
+    }
+
+    /* === Overlay Box Styling === */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Dim the image */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      border-radius: 25px;
+      position: relative; /* Added positioning context */
+    }
+
+    /* === Text Position Styling === */
+    .text-position {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    /* === Countdown Text Styling === */
+    .countdown {
+      font-size: 100px;                     /* Font size */
+      font-weight: 800;                    /* Font weight (boldness) */
+      color: #ffffff;                      /* Font color */
+      letter-spacing: 2px;                 /* Spacing between letters */
+      padding: 10px;                       /* Padding around the text */
+      border-radius: 15px;                 /* Rounded corners around text */
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    /* === Wedding Date Styling === */
+    .date {
+      font-size: 32px;                     /* Font size */
+      font-weight: 400;                    /* Font weight */
+      color: #ffffff;                      /* Font color */
+      padding-top: -100px;                   /* Padding above the date */
+      letter-spacing: 1px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* === Responsive (Optional) === */
+    @media (max-width: 600px) {
+      .countdown {
+        font-size: 80px;
+      }
+      .date {
+        font-size: 30px;
+      }
+      .countdown-image {
+        left: 50%;
+        transform: translateX(-50%) translateY(-250px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <img src="wedding-bg.jpeg" alt="Wedding Background" class="countdown-image">
+    <div class="overlay">
+      <div class="text-position">
+        <div class="countdown" id="daysRemaining">Loading...</div>
+        <div class="date">June 27, 2026</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function updateCountdown() {
+      const weddingDate = new Date("June 27, 2026");
+      const today = new Date();
+      const timeDiff = weddingDate - today;
+      const daysRemaining = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+      document.getElementById("daysRemaining").textContent = `${daysRemaining} Days Remaining`;
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 86400000); // Refresh every day
+  </script>
+</body>
+</html>
