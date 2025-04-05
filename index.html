@@ -26,23 +26,27 @@
       height: 600px;
       overflow: hidden;
       border-radius: 100px;
+      margin: 0 30px; /* Added margin for padding */
+      max-width: calc(100% - 60px); /* Added max-width for responsiveness */
     }
 
     .countdown-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      transform: translate(0px, -250px); /* Adjust position here */
+      width: 100%;
+      height: auto;
       display: block;
-      width: 900px; /* Set width */
-      height: auto; /* Set height to auto */
+      margin: 0 auto;
+    }
+
+    /* === Image Wrapper Styling === */
+    .image-wrapper {
+      transform: translateY(-275px); /* Move image upward */
     }
 
     /* === Overlay Box Styling === */
     .overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
+      position: absolute; /* Changed to absolute */
+      top: 0; /* Ensured anchored to top */
+      left: 0; /* Ensured anchored to left */
       width: 100%;
       height: 100%;
       background-color: rgba(0, 0, 0, 0.5); /* Dim the image */
@@ -51,7 +55,6 @@
       justify-content: center;
       align-items: center;
       border-radius: 25px;
-      position: relative; /* Added positioning context */
     }
 
     /* === Text Position Styling === */
@@ -85,6 +88,12 @@
     }
 
     /* === Responsive (Optional) === */
+    @media (max-width: 900px) {
+      .image-wrapper {
+        transform: translateY(-150px); /* Remove shift for tablets and smaller */
+      }
+    }
+
     @media (max-width: 600px) {
       .countdown {
         font-size: 80px;
@@ -92,16 +101,23 @@
       .date {
         font-size: 30px;
       }
-      .countdown-image {
-        left: 50%;
-        transform: translateX(-50%) translateY(-250px);
+      .image-container {
+        width: 100%; /* Changed width for small screens */
+        height: auto;
+        border-radius: 80px; /* Adjust radius for better proportion */
+        max-width: 900px;
+      }
+      .image-wrapper {
+        transform: translateY(0); /* Override transform for small screens */
       }
     }
   </style>
 </head>
 <body>
   <div class="image-container">
-    <img src="wedding-bg.jpeg" alt="Wedding Background" class="countdown-image">
+    <div class="image-wrapper">
+      <img src="wedding-bg.jpeg" alt="Wedding Background" class="countdown-image">
+    </div>
     <div class="overlay">
       <div class="text-position">
         <div class="countdown" id="daysRemaining">Loading...</div>
